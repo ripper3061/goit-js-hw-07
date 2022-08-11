@@ -1,7 +1,7 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-const makeGalleryCardsMakeup = ({ preview, original, description }) => {
+const makeGalleryCard = ({ preview, original, description }) => {
   return `
   <a class="gallery__link" href="${original}">
   <img
@@ -13,10 +13,10 @@ const makeGalleryCardsMakeup = ({ preview, original, description }) => {
   </a>
   `;
 };
-const makeGalleryList = galleryItems.map(makeGalleryCardsMakeup).join("");
+const makeGalleryCardList = galleryItems.map(makeGalleryCard).join("");
 const gallery = document.querySelector(".gallery");
 gallery.addEventListener("click", onOpenModal);
-gallery.insertAdjacentHTML("beforeend", makeGalleryList);
+gallery.insertAdjacentHTML("beforeend", makeGalleryCardList);
 window.addEventListener("keydown", onCloseModal);
 
 let modal;
@@ -34,7 +34,7 @@ function onOpenModal(event) {
 
 function onCloseModal(event) {
   if (event.code === "Escape") {
-    modal.close();
+    modal?.close();
   }
 }
 
