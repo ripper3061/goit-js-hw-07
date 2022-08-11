@@ -20,24 +20,33 @@ const makeGalleryList = galleryItems.map(makeGalleryCardsMakeup).join("");
 
 gallery.insertAdjacentHTML("beforeend", makeGalleryList);
 
-gallery.addEventListener("click", onImageClick);
-
-let imageOriginalLink;
-
-function onImageClick(event) {
+gallery.addEventListener("click", onModalOnClick);
+let modal;
+function onModalOnClick(event) {
   event.preventDefault();
   if (!event.target.classList.contains("gallery__image")) {
     return;
   }
-  imageOriginalLink = event.target.dataset.source;
-  openModal();
-}
+  const imageOriginalLink = event.target.dataset.source;
 
-function openModal() {
-  document.querySelector(".gallery__link").onclick = () => {
-    basicLightbox
-      .create(`<img width="1400" height="900" src="${imageOriginalLink}"> `)
-      .show();
-    console.log(basicLightbox.create);
-  };
+  // openModal
+  openModal(imageOriginalLink);
 }
+function openModal(imageOriginalLink) {
+  modal = basicLightbox.create(
+    `<img width="1400" height="900" src="${imageOriginalLink}"> `,
+    {
+      onShow: (modal) => {
+        window.addEventListener("keydown", () => {
+          if (event.code === "Escape") {
+            modal.close();
+          }
+        });
+      },
+    }
+  );
+  modal.show();
+}
+// const modal = openModal(imageOriginalLink);
+
+// window.addEventListener("keydown", openModal(imageOriginalLink));
