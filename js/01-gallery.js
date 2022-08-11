@@ -30,12 +30,14 @@ function onImageClick(event) {
     return;
   }
   imageOriginalLink = event.target.dataset.source;
-  console.log(imageOriginalLink);
+  openModal();
 }
 
-document.querySelector(".gallery__link").onclick = () => {
-  basicLightbox
-    .create(`<img width="1400" height="900" src="${imageOriginalLink}"> `)
-    .show();
-  console.log(basicLightbox.create);
-};
+function openModal() {
+  document.querySelector(".gallery__link").onclick = () => {
+    basicLightbox
+      .create(`<img width="1400" height="900" src="${imageOriginalLink}"> `)
+      .show();
+    console.log(basicLightbox.create);
+  };
+}
