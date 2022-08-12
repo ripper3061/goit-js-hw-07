@@ -15,8 +15,9 @@ const makeGalleryCard = ({ preview, original, description }) => {
 };
 const makeGalleryCardList = galleryItems.map(makeGalleryCard).join("");
 const gallery = document.querySelector(".gallery");
-gallery.addEventListener("click", onOpenModal);
 gallery.insertAdjacentHTML("beforeend", makeGalleryCardList);
+
+gallery.addEventListener("click", onOpenModal);
 window.addEventListener("keydown", onCloseModal);
 
 let modal;
